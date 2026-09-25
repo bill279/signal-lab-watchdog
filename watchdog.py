@@ -11,7 +11,7 @@ TOPIC = os.environ["NTFY_TOPIC"].strip()
 HB = "hb-" + hashlib.sha256(TOPIC.encode()).hexdigest()[:20]
 DOWN_AFTER_S = 75 * 60
 CRITICAL = {"truth": "Truth Social feed", "x": "X (Twitter) feed", "wallet": "wallet watcher",
-            "whitehouse": "White House feed", "news": "news watcher"}
+            "whitehouse": "White House feed", "news": "news watcher", "xsearch": "X search for your coins"}
 NAMES = {"x": "X", "truth": "Truth Social"}
 
 def poll():
