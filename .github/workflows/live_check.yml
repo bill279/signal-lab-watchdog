@@ -1,0 +1,20 @@
+name: live-check
+on:
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 live_check.py
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          FRIENDS_TOPIC: ${{ secrets.FRIENDS_TOPIC }}
+      - run: |
+          git config user.name "signal-lab-bot"; git config user.email "bot@users.noreply.github.com"
+          git add live_state.json; git commit -qm "live-check state" || true; git push -q || true
