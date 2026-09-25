@@ -9,7 +9,7 @@ import hashlib, json, os, sys, time, urllib.request
 
 TOPIC = os.environ["NTFY_TOPIC"].strip()
 HB = "hb-" + hashlib.sha256(TOPIC.encode()).hexdigest()[:20]
-DOWN_AFTER_S = 75 * 60
+DOWN_AFTER_S = 150 * 60   # heartbeat is hourly now
 CRITICAL = {"truth": "Truth Social feed", "x": "X (Twitter) feed", "wallet": "wallet watcher",
             "whitehouse": "White House feed", "news": "news watcher", "xsearch": "X search for your coins"}
 NAMES = {"x": "X", "truth": "Truth Social"}
