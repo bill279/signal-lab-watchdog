@@ -48,7 +48,8 @@ def main():
     if last is None or now - last > DOWN_AFTER_S:
         mins = "over 12 hours" if last is None else "%d minutes" % ((now - last) // 60)
         problems.append(("down", "Signal Lab stopped reporting",
-                         "No check-in from the server for %s, so alerts aren't going out. "
+                         "No check-in from the server for %s, so alerts aren't going out. Either the server stopped, "
+                         "or it used up ntfy's daily message limit (then it resumes by itself after 6pm MT). "
                          "Tell Claude: 'signal lab is down'." % mins))
     else:
         recent = [b for b in beats if now - b["time"] <= 3 * 3600]
